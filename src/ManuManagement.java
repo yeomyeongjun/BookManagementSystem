@@ -1,11 +1,12 @@
 import java.util.Scanner;
 
-public class ManuManagement {
+public class ManuManagement { 
 
 	public static void main(String[] args) {
-		
 		Scanner input = new Scanner(System.in);
 		
+		BookManager bookManager = new BookManager(input); //ManuManagement에서 BookManager를 관리한다고 생각
+
 		while (true) {
 			System.out.println("========================================");
 			System.out.println("***BOOK MANAGEMENT PROGRAM***");
@@ -22,64 +23,17 @@ public class ManuManagement {
 			int num = input.nextInt();
 			
 			if (num == 1) 
-				borrowBook();
+				bookManager.borrowBook(); //앞에 인스턴스 bookmanager를 붙여서 클래스 연동
 			else if (num == 2)
-				returnBook();
+				bookManager.returnBook();
 			else if (num == 3)
-				extend();
+				bookManager.extend();
 			else if (num == 4)
-				search();
+				bookManager.search();
 			else if (num == 5)
 				break;
 			else
 				continue;
 		}
-	}
-	
-	public static void borrowBook() {
-		Scanner input = new Scanner(System.in);
-		
-		System.out.print("Enter Your Student ID:");
-		int id = input.nextInt(); // 대출자 정보를 확인하기 위해 학번(학생증 ID)을 입력받음
-		
-		System.out.print("Enter Book Code that you want to borrow:");
-		int code = input.nextInt(); // 대출할 책 코드 입력
-		
-		String buf = input.nextLine(); //엔터키 오작동으로 인한 에러 보완
-	}
-	
-	public static void returnBook() {
-		Scanner input = new Scanner(System.in);
-		
-		System.out.print("Enter Book Code that you want to return:");
-		int code = input.nextInt(); // 반납할 책 코드 입력
-		
-		String buf = input.nextLine(); //엔터키 오작동으로 인한 에러 보완
-	}
-	
-	public static void extend() {
-		Scanner input = new Scanner(System.in);
-		
-		System.out.print("Enter Your Student ID:");
-		int id = input.nextInt(); // 대출자 정보를 확인하기 위해 학번(학생증 ID)을 입력받음
-		
-		System.out.print("Enter Book Code that you want to extend borrowing period:");
-		int code = input.nextInt(); // 대출기간을 연장할 책 코드 입력
-		
-		System.out.print("How long period you want to extend?");
-		while (true) {
-			int day = input.nextInt(); // 연장하고 싶은 기간 입력(예: 7일)
-			if (day >= 0 && day <= 7)
-				break;
-		}
-		
-		String buf = input.nextLine(); //엔터키 오작동으로 인한 에러 보완
-	}
-	
-	public static void search() {
-		Scanner input = new Scanner(System.in);
-		
-		System.out.print("Enter Book Title that you want to borrow:"); //검색할 책 제목 입력
-		String title = input.nextLine();
 	}
 }
