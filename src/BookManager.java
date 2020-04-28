@@ -4,6 +4,7 @@ import java.util.Scanner;
 import Book.Book;
 import Book.BookKind;
 import Book.DocumentaryBook;
+import Book.ReferenceBook;
 import Book.SFBook;
 
 public class BookManager {
@@ -45,7 +46,7 @@ public class BookManager {
 			}
 			
 			else if (kind == 3) {
-				book = new Book(BookKind.Documentary);
+				book = new DocumentaryBook(BookKind.Documentary);
 				book.getUserInput(input);
 				books.add(book); //입력받은 정보 추가
 				break;
@@ -53,7 +54,7 @@ public class BookManager {
 			}
 		
 			else if (kind == 4) {
-				book = new Book(BookKind.Reference);
+				book = new ReferenceBook(BookKind.Reference);
 				book.getUserInput(input);
 				books.add(book); //입력받은 정보 추가
 				break;

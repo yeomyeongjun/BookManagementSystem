@@ -24,7 +24,6 @@ public class Book {
 		this.code = code;
 	}
 
-
 	
 	public void setKind(BookKind kind) {
 		this.kind = kind;
