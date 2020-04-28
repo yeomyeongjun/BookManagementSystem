@@ -2,8 +2,8 @@ package Book;
 
 import java.util.Scanner;
 
-public class Book { //day는 삭제함
-	protected BookKind kind = BookKind.Horror; //디폴트 값 넣어줌
+public class Book {
+	protected BookKind kind = BookKind.Horror; 
 	public BookKind getKind() {
 		return kind;
 	}
@@ -12,9 +12,11 @@ public class Book { //day는 삭제함
 	protected int code;
 	
 	public Book() {
-	}
-	
 
+	}
+
+
+	
 	public void setKind(BookKind kind) {
 		this.kind = kind;
 	}
@@ -37,7 +39,21 @@ public class Book { //day는 삭제함
 
 	
 	public void printInfo() {
-		System.out.println("ID: " + id + "Code: " + code);
+		String bkind = "none";
+		switch(this.kind) {
+			case Horror:
+				bkind = "Horror.";
+			case Sciencefiction:
+				bkind = "High";
+			case Documentary:
+				bkind = "Documentary";
+			case Reference:
+				bkind = "Reference";
+			default: //else
+				
+		}
+		
+		System.out.println("Kind: " + bkind + "ID: " + id + "Code: " + code);
 	}
 	
 	public void getUserInput(Scanner input) {

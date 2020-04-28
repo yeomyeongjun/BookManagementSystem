@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import Book.Book;
 import Book.HorrorBook;
+import Book.SFBook;
 
 public class BookManager {
 	
@@ -14,7 +15,7 @@ public class BookManager {
 		this.input = input;
 	}
 
-	public void borrowBook() {
+	public void addBook() {
 		
 		int kind = 0;
 		
@@ -22,14 +23,24 @@ public class BookManager {
 			System.out.print("Select num for Student Kind:");
 			System.out.print("1. for Horror Book");
 			System.out.print("2. for SF");	
+			System.out.print("3. for Documentary");
+			System.out.print("4. for Reference Book:");
 		
 			kind = input.nextInt();
 			
 			if (kind == 1) {
-				book = new Book();
+				book = new HorrorBook();
 				book.getUserInput(input);
 				books.add(book); //입력받은 정보 추가
 				break;
+			}
+			
+			else if (kind == 2) {
+				book = new SFBook();
+				book.getUserInput(input);
+				books.add(book); //입력받은 정보 추가
+				break;
+				
 			}
 			
 			else if (kind == 2) {
@@ -43,16 +54,12 @@ public class BookManager {
 			else {
 				System.out.println("Please select num between 1 - 2");
 			}
-
-			
-
 		}
-
 	}
 	
-	public void returnBook() {
+	public void deleteBook() {
 		
-		System.out.print("Enter Book Code that you want to return:");
+		System.out.print("Enter Book Code that you want to delete:");
 		int code = input.nextInt(); // 반납할 책 코드 입력
 		
 		int index = -1; //초기치를 -1로 설정

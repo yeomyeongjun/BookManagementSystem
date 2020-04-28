@@ -23,9 +23,9 @@ public class ManuManagement {
 			int num = input.nextInt();
 			
 			if (num == 1) 
-				bookManager.borrowBook(); //앞에 인스턴스 bookmanager를 붙여서 클래스 연동
+				bookManager.addBook(); //앞에 인스턴스 bookmanager를 붙여서 클래스 연동
 			else if (num == 2)
-				bookManager.returnBook();
+				bookManager.deleteBook();
 			else if (num == 3)
 				bookManager.edit();
 			else if (num == 4)

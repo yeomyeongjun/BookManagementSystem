@@ -2,13 +2,11 @@ package Book;
 
 import java.util.Scanner;
 
-public class HorrorBook extends Book {
-
+public class SFBook extends Book {
 	protected int score;
 
+
 	public void getUserInput(Scanner input) {
-		
-		
 		
 		System.out.print("Enter Your Student ID:");
 		int id = input.nextInt(); // 대출자 정보를 확인하기 위해 학번(학생증 ID)을 입력받음
@@ -21,7 +19,7 @@ public class HorrorBook extends Book {
 		System.out.print("Enter a score for this book");
 		score = input.nextInt();
 	}
-		
+	
 	public void printInfo() {
 		String bkind = "none";	
 		switch(this.kind) {

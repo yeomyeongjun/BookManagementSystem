@@ -2,7 +2,7 @@ package Book;
 
 public enum BookKind {
 	Horror,
-	ScienceFiction,
+	Sciencefiction,
 	Documentary,
-	ReferenceBook
+	Reference
 }
