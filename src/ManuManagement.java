@@ -11,8 +11,8 @@ public class ManuManagement {
 			System.out.println("========================================");
 			System.out.println("***BOOK MANAGEMENT PROGRAM***");
 			System.out.println("----------------------------------------");
-			System.out.println("1. Borrow Books"); // 도서 대출
-			System.out.println("2. Return Books"); // 도서 반납
+			System.out.println("1. Add Book"); // 도서 대출
+			System.out.println("2. Delete Book"); // 도서 반납
 			System.out.println("3. Edit Book Information"); // 도서 정보 수정
 			System.out.println("4. View All Books"); // 도서 검색
 			System.out.println("5. Exit"); // 나가기

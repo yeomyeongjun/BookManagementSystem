@@ -8,11 +8,20 @@ public class Book {
 		return kind;
 	}
 	
-	protected int id; 
+	protected String title; 
 	protected int code;
 	
 	public Book() {
 
+	}
+	
+	public Book(BookKind kind) {
+		this.kind = kind;
+	}
+	
+	public Book(String title, int code) {
+		this.title = title;
+		this.code = code;
 	}
 
 
@@ -21,12 +30,12 @@ public class Book {
 		this.kind = kind;
 	}
 
-	public int getId() {
-		return id;
+	public String getTitle() {
+		return this.title;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public int getCode() {
@@ -53,18 +62,21 @@ public class Book {
 				
 		}
 		
-		System.out.println("Kind: " + bkind + "ID: " + id + "Code: " + code);
+		System.out.println("Kind: " + bkind + "Title: " + title + "Code: " + code);
 	}
 	
 	public void getUserInput(Scanner input) {
-		System.out.print("Enter Your Student ID:");
-		int id = input.nextInt(); // 대출자 정보를 확인하기 위해 학번(학생증 ID)을 입력받음
-		this.setId(id);
 		
-		System.out.print("Enter Book Code that you want to borrow:");
-		int code = input.nextInt(); // 대출할 책 코드 입력
+		input.nextLine();
+		
+		System.out.print("Enter Title: ");
+		String title = input.nextLine(); 
+		this.setTitle(title);
+		
+		System.out.print("Enter Book Code: ");
+		int code = input.nextInt(); //  책 코드 입력
 		this.setCode(code);
 		
-		String buf = input.nextLine(); //엔터키 오작동으로 인한 에러 보완
+		input.nextLine(); //엔터키 오작동으로 인한 에러 보완
 	}
 }

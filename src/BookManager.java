@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Book.Book;
+import Book.BookKind;
 import Book.DocumentaryBook;
-import Book.HorrorBook;
 import Book.SFBook;
 
 public class BookManager {
@@ -21,7 +21,7 @@ public class BookManager {
 		int kind = 0;
 		
 		while (kind != 1 && kind != 2) {
-			System.out.println("Select num for Student Kind:");
+			System.out.println("Select num for Book Kind:");
 			System.out.println("1. for Horror Book");
 			System.out.println("2. for SF");	
 			System.out.println("3. for Documentary");
@@ -30,14 +30,14 @@ public class BookManager {
 			kind = input.nextInt();
 			
 			if (kind == 1) {
-				book = new HorrorBook();
+				book = new Book(BookKind.Horror);
 				book.getUserInput(input);
 				books.add(book); //입력받은 정보 추가
 				break;
 			}
 			
 			else if (kind == 2) {
-				book = new SFBook();
+				book = new SFBook(BookKind.Sciencefiction);
 				book.getUserInput(input);
 				books.add(book); //입력받은 정보 추가
 				break;
@@ -45,7 +45,15 @@ public class BookManager {
 			}
 			
 			else if (kind == 3) {
-				book = new DocumentaryBook();
+				book = new Book(BookKind.Documentary);
+				book.getUserInput(input);
+				books.add(book); //입력받은 정보 추가
+				break;
+				
+			}
+		
+			else if (kind == 4) {
+				book = new Book(BookKind.Reference);
 				book.getUserInput(input);
 				books.add(book); //입력받은 정보 추가
 				break;
