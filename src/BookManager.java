@@ -2,119 +2,125 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Book.Book;
+import Book.BookInput;
 import Book.BookKind;
 import Book.DocumentaryBook;
+import Book.HorrorBook;
 import Book.ReferenceBook;
 import Book.SFBook;
 
 public class BookManager {
 	
-	ArrayList<Book> books = new ArrayList<Book>();
+	ArrayList<BookInput> books = new ArrayList<BookInput>();
 	
 	Scanner input; // 스캐너를 반복적으로 선언하지 않고 한번에 선언함
-	Book book;
+	BookInput BookInput;
 	BookManager(Scanner input) { 
 		this.input = input;
 	}
 
 	public void addBook() {
+		int kind = -1;
 		
-		int kind = 0;
-		
-		while (kind != 1 && kind != 2) {
-			System.out.println("Select num for Book Kind:");
-			System.out.println("1. for Horror Book");
-			System.out.println("2. for SF");	
-			System.out.println("3. for Documentary");
-			System.out.println("4. for Reference Book:");
-		
+		while (!(kind >= 1 && kind <= 4)) {
+
+			showAddMenu();
 			kind = input.nextInt();
-			
-			if (kind == 1) {
-				book = new Book(BookKind.Horror);
-				book.getUserInput(input);
-				books.add(book); //입력받은 정보 추가
+
+			switch(kind) {
+			case 1:
+				BookInput = new HorrorBook(BookKind.Horror);
 				break;
-			}
-			
-			else if (kind == 2) {
-				book = new SFBook(BookKind.Sciencefiction);
-				book.getUserInput(input);
-				books.add(book); //입력받은 정보 추가
+			case 2:
+				BookInput = new SFBook(BookKind.Sciencefiction);
 				break;
-				
-			}
-			
-			else if (kind == 3) {
-				book = new DocumentaryBook(BookKind.Documentary);
-				book.getUserInput(input);
-				books.add(book); //입력받은 정보 추가
+			case 3:
+				BookInput = new DocumentaryBook(BookKind.Documentary);
+				break;				
+			case 4:
+				BookInput = new ReferenceBook(BookKind.Reference);
 				break;
-				
-			}
-		
-			else if (kind == 4) {
-				book = new ReferenceBook(BookKind.Reference);
-				book.getUserInput(input);
-				books.add(book); //입력받은 정보 추가
-				break;
-				
-			}
-			
-			else {
+			default:
 				System.out.println("Please select num between 1 - 2");
 			}
+			
+			inputBook(BookInput, input);
 		}
+	}
+	
+	public void showAddMenu() {
+		System.out.println("***Add menu***");
+		System.out.println("1. for Horror Book");
+		System.out.println("2. for SF");	
+		System.out.println("3. for Documentary");
+		System.out.println("4. for Reference Book:");
+		System.out.println("Please Select num 1 - 4 for Book Kind:");
+	}
+	
+	public void inputBook(BookInput book, Scanner input) {
+		book.getUserInput(input);
+		books.add(book);
 	}
 	
 	public void deleteBook() {
-		
+		System.out.println("***Delete menu***");
 		System.out.print("Enter Book Code that you want to delete:");
-		int code = input.nextInt(); // 반납할 책 코드 입력
-		
-		int index = -1; //초기치를 -1로 설정
+		int code = input.nextInt();
+
+		removeBook(findIndex(code), code);
+		input.nextLine();
+	}
+	
+	public int findIndex(int bookcode) {
+		int index = -1;
 		
 		for (int i = 0; i < books.size(); i++) 
-			if (books.get(i).getCode() == code) {
+			if (books.get(i).getCode() == bookcode) {
 				index = i;
 				break;
 			}
-		
+		return index;
+	}
+	
+	public int removeBook(int index, int bookcode) {
 		
 		if (index >= 0) {
-			books.remove(index); // 리스트에서 반납할 책 코드는 삭제
-			System.out.println("The book" + code + "is deleted.");
-			return;
+			books.remove(index);
+			System.out.println("The book" + bookcode + "is deleted.");
+			return 1;
 		}
 		
-		else
-			System.out.println("The book" + code + "has not been borrowed.");
-	
-		
-		String buf = input.nextLine(); //엔터키 오작동으로 인한 에러 보완
+		else {
+			System.out.println("The book" + bookcode + "has not deleted.");
+			return -1;
+		}
 	}
 	
 	public void edit() {
+		System.out.println("***Edit menu***");
+		System.out.println("Please enter Current code you want to fix");
+		int code = input.nextInt();
 		
 		int index = -1;
-		System.out.println("Please enter current code"); 
-		int code = input.nextInt(); // 변경할 코드 입력
 		
 		for (int i = 0; i < books.size(); i++) 
 			if (books.get(i).getCode() == code) {
 				index = i;
 				System.out.println("Please enter new code");
-				int edit = input.nextInt(); // 변경할 코드 입력
-				book.setCode(edit); // 코드 변경
+				setBookCode(BookInput, input);
 				break;
 			}
-		
-		String buf = input.nextLine(); //엔터키 오작동으로 인한 에러 보완
+		input.nextLine();
 	}
 	
-	public void view() { // search기능 대신 view 기능으로 대체함
+	public void setBookCode(BookInput book, Scanner input) {
+		int code = input.nextInt(); 
+		BookInput.setCode(code); 
+	}
+	
+	public void view() { 
+		System.out.println("***View menu***");
 		for (int i = 0; i < books.size(); i++)
 			books.get(i).printInfo();
-			
 	}
 }

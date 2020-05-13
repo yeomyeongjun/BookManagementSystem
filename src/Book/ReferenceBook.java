@@ -10,7 +10,6 @@ public class ReferenceBook extends Book {
 	}
 	
 	public void getUserInput(Scanner input) {
-		
 		super.getUserInput(input);
 		
 		System.out.print("Enter a related subject of this book: ");
@@ -18,8 +17,10 @@ public class ReferenceBook extends Book {
 	}
 	
 	public void printInfo() {
-		super.printInfo();
+		String bkind = getKindString();
+		System.out.println("Kind: " + bkind);
+		System.out.println("Title: " + title);
+		System.out.println("Code: " + code);
 		System.out.println("Related Subject: " + subject);
 	}
-			
 }
