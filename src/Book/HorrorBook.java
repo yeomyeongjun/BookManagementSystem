@@ -3,7 +3,7 @@ package Book;
 import java.util.Scanner;
 
 public class HorrorBook extends Book {
-	protected int score;
+	protected int restrict;
 
 	public HorrorBook(BookKind kind) {
 		super(kind);
@@ -14,7 +14,7 @@ public class HorrorBook extends Book {
 		super.getUserInput(input);
 		
 		System.out.print("Enter a score for this HorrorBook");
-		score = input.nextInt();
+		restrict = input.nextInt();
 	}
 	
 	public void printInfo() {
@@ -23,7 +23,7 @@ public class HorrorBook extends Book {
 		System.out.println("Title: " + title);
 		System.out.println("Writer: " + writer);
 		System.out.println("Code: " + code);
-		System.out.println("Score: " + score);
+		System.out.println("Age restrictions: " + restrict);
 	}	
 }
 

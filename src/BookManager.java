@@ -9,12 +9,13 @@ import Book.DocumentaryBook;
 import Book.HorrorBook;
 import Book.ReferenceBook;
 import Book.SFBook;
+import Exception.CodeFormatException;
 
 public class BookManager {
 	
 	ArrayList<BookInput> books = new ArrayList<BookInput>();
 	
-	Scanner input; // 스캐너를 반복적으로 선언하지 않고 한번에 선언함
+	Scanner input;
 	BookInput BookInput;
 	BookManager(Scanner input) { 
 		this.input = input;
@@ -120,7 +121,13 @@ public class BookManager {
 	
 	public void setBookCode(BookInput book, Scanner input) {
 		int code = input.nextInt(); 
-		BookInput.setCode(code); 
+		try {
+			BookInput.setCode(code);
+		} 
+		catch (CodeFormatException e) {
+			System.out.println("Error! Please enter an 8-digit code.");
+			System.out.println("The millionth digit of this code cannot be zero.");			
+		} 
 	}
 	
 	public void view() { 

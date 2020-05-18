@@ -2,6 +2,8 @@ package Book;
 
 import java.util.Scanner;
 
+import Exception.CodeFormatException;
+
 public abstract class Book implements BookInput{
 	protected BookKind kind = BookKind.Horror; 
 	public BookKind getKind() {
@@ -24,7 +26,6 @@ public abstract class Book implements BookInput{
 		this.title = title;	
 		this.writer = writer;
 		this.code = code;
-
 	}
 	
 	public void setKind(BookKind kind) {
@@ -43,7 +44,11 @@ public abstract class Book implements BookInput{
 		return this.code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(int code) throws CodeFormatException { //코드는 8자리로, 첫번째 숫자가 0이 아님
+		if (code % 10000000 == 0) {
+			throw new CodeFormatException();
+		}
+		
 		this.code = code;
 	}
 	
@@ -60,7 +65,15 @@ public abstract class Book implements BookInput{
 	
 	public void setBookCode(BookInput book, Scanner input) {
 		int code = input.nextInt(); 
-		book.setCode(code); 
+		try {
+			book.setCode(code);
+		} catch (CodeFormatException e) {
+			System.out.println("Error! Please enter an 8-digit code.");
+			System.out.println("The millionth digit of this code cannot be zero.");			
+		} 
+		finally {
+			System.out.println("The code" + code + "is successfully set.");
+		}
 	}
 	
 	public void getUserInput(Scanner input) {
@@ -76,7 +89,13 @@ public abstract class Book implements BookInput{
 		
 		System.out.print("Enter Book Code: ");
 		int code = input.nextInt(); 
-		this.setCode(code); 
+		try {
+			this.setCode(code); 
+		}
+		catch (CodeFormatException e) {
+			System.out.println("Error! Please enter an 8-digit code.");
+			System.out.println("The millionth digit of this code cannot be zero.");			
+		}
 		
 		input.nextLine();
 	}
@@ -86,12 +105,16 @@ public abstract class Book implements BookInput{
 		switch(this.kind) {
 			case Horror:
 				bkind = "Horror.";
+				break;
 			case Sciencefiction:
-				bkind = "High";
+				bkind = "Sciencefiction";
+				break;
 			case Documentary:
 				bkind = "Documentary";
+				break;
 			case Reference:
 				bkind = "Reference";
+				break;
 			default: 
 		}
 		return bkind;

@@ -2,12 +2,14 @@ package Book;
 
 import java.util.Scanner;
 
+import Exception.CodeFormatException;
+
 public interface BookInput {
 	public void getUserInput(Scanner input);
 	
 	public int getCode();
 
-	public void setCode(int code);
+	public void setCode(int code) throws CodeFormatException;
 	
 	public String getTitle();
 	
