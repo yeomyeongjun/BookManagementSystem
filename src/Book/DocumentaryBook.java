@@ -19,6 +19,7 @@ public class DocumentaryBook extends Book {
 		String bkind = getKindString();
 		System.out.println("Kind: " + bkind);
 		System.out.println("Title: " + title);
+		System.out.println("Wirter: " + writer);
 		System.out.println("Code: " + code);
 		System.out.println("Detailed genre: " + genre);
 	}

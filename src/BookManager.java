@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Book.Book;
@@ -23,29 +24,38 @@ public class BookManager {
 		int kind = -1;
 		
 		while (!(kind >= 1 && kind <= 4)) {
-
-			showAddMenu();
-			kind = input.nextInt();
-
-			switch(kind) {
-			case 1:
-				BookInput = new HorrorBook(BookKind.Horror);
-				break;
-			case 2:
-				BookInput = new SFBook(BookKind.Sciencefiction);
-				break;
-			case 3:
-				BookInput = new DocumentaryBook(BookKind.Documentary);
-				break;				
-			case 4:
-				BookInput = new ReferenceBook(BookKind.Reference);
-				break;
-			default:
-				System.out.println("Please select num between 1 - 2");
+			try {
+				showAddMenu();
+				kind = input.nextInt();
+	
+				switch(kind) {
+				case 1:
+					BookInput = new HorrorBook(BookKind.Horror);
+					break;
+				case 2:
+					BookInput = new SFBook(BookKind.Sciencefiction);
+					break;
+				case 3:
+					BookInput = new DocumentaryBook(BookKind.Documentary);
+					break;				
+				case 4:
+					BookInput = new ReferenceBook(BookKind.Reference);
+					break;
+				default:
+					System.out.println("Please select num between 1 - 4");
+				}
+				
+				inputBook(BookInput, input);
 			}
-			
-			inputBook(BookInput, input);
-		}
+			catch (InputMismatchException e) {
+				System.out.println("Please put an integer between 1 and 4!");
+				if (input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
+				
+			}
+		} 
 	}
 	
 	public void showAddMenu() {
@@ -63,26 +73,20 @@ public class BookManager {
 	}
 	
 	public void deleteBook() {
-		System.out.println("***Delete menu***");
+		int code = -1;
 		System.out.print("Enter Book Code that you want to delete:");
-		int code = input.nextInt();
-
-		removeBook(findIndex(code), code);
-		input.nextLine();
+		code = input.nextInt();
+		removeBook(code);
 	}
 	
-	public int findIndex(int bookcode) {
+	public int removeBook(int bookcode) {
 		int index = -1;
 		
-		for (int i = 0; i < books.size(); i++) 
+		for (int i = 0; i < books.size(); i++)
 			if (books.get(i).getCode() == bookcode) {
 				index = i;
 				break;
 			}
-		return index;
-	}
-	
-	public int removeBook(int index, int bookcode) {
 		
 		if (index >= 0) {
 			books.remove(index);
@@ -110,6 +114,7 @@ public class BookManager {
 				setBookCode(BookInput, input);
 				break;
 			}
+		
 		input.nextLine();
 	}
 	

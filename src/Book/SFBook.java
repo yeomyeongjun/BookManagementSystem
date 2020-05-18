@@ -20,9 +20,9 @@ public class SFBook extends Book {
 		String bkind = getKindString();
 		System.out.println("Kind: " + bkind);
 		System.out.println("Title: " + title);
+		System.out.println("Writer: " + writer);
 		System.out.println("Code: " + code);
 		System.out.println("Score: " + score);
 	}	
-	
 }
 

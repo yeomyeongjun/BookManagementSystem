@@ -8,7 +8,11 @@ public interface BookInput {
 	public int getCode();
 
 	public void setCode(int code);
-
+	
+	public String getTitle();
+	
+	public void setTitle(String title);
+	
 	public void printInfo();
 	
 	public void setBookCode(BookInput book, Scanner input);

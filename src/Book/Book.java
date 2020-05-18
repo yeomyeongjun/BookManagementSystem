@@ -9,7 +9,9 @@ public abstract class Book implements BookInput{
 	}
 	
 	protected String title; 
+	protected String writer;
 	protected int code;
+	
 	
 	public Book() {
 	}
@@ -18,9 +20,11 @@ public abstract class Book implements BookInput{
 		this.kind = kind;
 	}
 	
-	public Book(String title, int code) {
-		this.title = title;
+	public Book(String title, String writer, int code) {
+		this.title = title;	
+		this.writer = writer;
 		this.code = code;
+
 	}
 	
 	public void setKind(BookKind kind) {
@@ -36,12 +40,21 @@ public abstract class Book implements BookInput{
 	}
 
 	public int getCode() {
-		return code;
+		return this.code;
 	}
 
 	public void setCode(int code) {
 		this.code = code;
 	}
+	
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	
+	public String getWriter() {
+		return this.writer;
+	}
+	
 	
 	public abstract void printInfo();
 	
@@ -56,6 +69,10 @@ public abstract class Book implements BookInput{
 		System.out.print("Enter Title: ");
 		String title = input.nextLine(); 
 		this.setTitle(title);
+
+		System.out.print("Enter Writer: ");
+		String writer = input.nextLine();
+		this.setWriter(writer);
 		
 		System.out.print("Enter Book Code: ");
 		int code = input.nextInt(); 
