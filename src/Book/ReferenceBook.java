@@ -18,10 +18,13 @@ public class ReferenceBook extends Book {
 	
 	public void printInfo() {
 		String bkind = getKindString();
+		System.out.println("-----------------------------");
 		System.out.println("Kind: " + bkind);
 		System.out.println("Title: " + title);
 		System.out.println("Writer: " + writer);
 		System.out.println("Code: " + code);
 		System.out.println("Related Subject: " + subject);
+		System.out.println("Manager's name: " + manager);
+		System.out.println();
 	}
 }

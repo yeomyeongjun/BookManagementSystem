@@ -15,6 +15,10 @@ public interface BookInput {
 	
 	public void setTitle(String title);
 	
+	public String getManager();
+	
+	public void setManager(String manager);
+	
 	public void printInfo();
 	
 	public void setBookCode(BookInput book, Scanner input);

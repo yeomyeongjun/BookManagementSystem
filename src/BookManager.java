@@ -43,7 +43,7 @@ public class BookManager {
 					BookInput = new ReferenceBook(BookKind.Reference);
 					break;
 				default:
-					System.out.println("Please select num between 1 - 4");
+					System.out.println("Please select number between 1 - 4");
 				}
 				
 				inputBook(BookInput, input);
@@ -54,7 +54,6 @@ public class BookManager {
 					input.next();
 				}
 				kind = -1;
-				
 			}
 		} 
 	}
@@ -76,7 +75,17 @@ public class BookManager {
 	public void deleteBook() {
 		int code = -1;
 		System.out.print("Enter Book Code that you want to delete:");
-		code = input.nextInt();
+		while (true) {
+			try {
+				code = input.nextInt();
+				break;
+			}
+			
+			catch (InputMismatchException e) {
+				System.out.println("Error! Please enter Code that is integer type.");
+				input.nextLine();
+			}
+		}
 		removeBook(code);
 	}
 	
@@ -90,28 +99,38 @@ public class BookManager {
 			}
 		
 		if (index >= 0) {
+			System.out.println("The book [" + books.get(index).getTitle() + "] is deleted.");
 			books.remove(index);
-			System.out.println("The book" + bookcode + "is deleted.");
 			return 1;
 		}
 		
 		else {
-			System.out.println("The book" + bookcode + "has not deleted.");
+			System.out.println("The book [" + books.get(index).getTitle() + " ] has not deleted.");
 			return -1;
 		}
 	}
 	
 	public void edit() {
+		int code;
 		System.out.println("***Edit menu***");
-		System.out.println("Please enter Current code you want to fix");
-		int code = input.nextInt();
-		
+
+		while (true) {
+			try {
+					System.out.print("Please enter Current code you want to fix");
+					code = input.nextInt();
+					break;
+				}
+				catch (InputMismatchException e) {
+					System.out.println("Error! Please enter accurate code.");
+					input.nextLine();
+				}
+		}
 		int index = -1;
 		
 		for (int i = 0; i < books.size(); i++) 
 			if (books.get(i).getCode() == code) {
 				index = i;
-				System.out.println("Please enter new code");
+				System.out.print("Please enter new code:");
 				setBookCode(BookInput, input);
 				break;
 			}
@@ -120,14 +139,21 @@ public class BookManager {
 	}
 	
 	public void setBookCode(BookInput book, Scanner input) {
-		int code = input.nextInt(); 
-		try {
-			BookInput.setCode(code);
-		} 
-		catch (CodeFormatException e) {
-			System.out.println("Error! Please enter an 8-digit code.");
-			System.out.println("The millionth digit of this code cannot be zero.");			
-		} 
+		while (true) {
+			try {
+				int code = input.nextInt(); 
+				BookInput.setCode(code);
+				break;
+			} 
+			catch (InputMismatchException e) {
+				System.out.println("Error! Please enter an 8-digit code.");
+				input.nextLine();
+			}
+			catch (CodeFormatException e) {
+				System.out.println("The millionth digit of this code cannot be zero.");	
+				input.nextLine();
+			} 
+		}
 	}
 	
 	public void view() { 

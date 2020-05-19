@@ -17,10 +17,13 @@ public class DocumentaryBook extends Book {
 	
 	public void printInfo() {
 		String bkind = getKindString();
+		System.out.println("-----------------------------");
 		System.out.println("Kind: " + bkind);
 		System.out.println("Title: " + title);
 		System.out.println("Wirter: " + writer);
 		System.out.println("Code: " + code);
 		System.out.println("Detailed genre: " + genre);
+		System.out.println("Manager's name: " + manager);
+		System.out.println();
 	}
 }

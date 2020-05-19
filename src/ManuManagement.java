@@ -8,7 +8,6 @@ public class ManuManagement {
 		BookManager bookManager = new BookManager(input); 
 
 		selectMenu(input, bookManager);
-		
 	}
 	
 	public static void selectMenu(Scanner input, BookManager bookManager) {
@@ -16,7 +15,6 @@ public class ManuManagement {
 		
 		while (true) {
 			try {
-
 				showMenu();
 				
 				kind = input.nextInt();
@@ -38,7 +36,6 @@ public class ManuManagement {
 				default:
 					continue;
 				}
-		
 			}
 			catch (InputMismatchException e) {
 				System.out.println("Please put an integer between 1 and 5!");
@@ -51,8 +48,8 @@ public class ManuManagement {
 	}
 	
 	public static void showMenu() {
-		System.out.println("***BOOK MANAGEMENT PROGRAM***");
-		System.out.println();
+		System.out.println("=====BOOK MANAGEMENT PROGRAM=====");
+		System.out.println("***MENU***");
 		System.out.println("1. Add Book"); // 도서 대출
 		System.out.println("2. Delete Book"); // 도서 반납
 		System.out.println("3. Edit Book Information"); // 도서 정보 수정
