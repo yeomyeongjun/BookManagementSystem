@@ -1,8 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Book.Book;
 import Book.BookInput;
 import Book.BookKind;
 import Book.DocumentaryBook;
@@ -11,12 +11,19 @@ import Book.ReferenceBook;
 import Book.SFBook;
 import Exception.CodeFormatException;
 
-public class BookManager {
+public class BookManager implements Serializable{
 	
+	private static final long serialVersionUID = 689478802367667920L;
+
 	ArrayList<BookInput> books = new ArrayList<BookInput>();
 	
-	Scanner input;
+	transient Scanner input;
 	BookInput BookInput;
+	
+	public void setScanner(Scanner input) {
+		this.input = input;
+	}
+	
 	BookManager(Scanner input) { 
 		this.input = input;
 	}
