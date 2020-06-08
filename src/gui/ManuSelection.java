@@ -7,11 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ManuSelection extends JFrame {
+import listener.ButtonAddListener;
+import listener.ButtonViewListener;
 
-	public ManuSelection() {
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+public class ManuSelection extends JPanel {
+
+	WindowFrame frame;
+	
+	public ManuSelection(WindowFrame frame) {
+		this.frame = frame;
+		
+		this.setLayout(new BorderLayout());
 		
 		JPanel panel1 = new JPanel();
 		
@@ -24,6 +30,9 @@ public class ManuSelection extends JFrame {
 		JButton button4 = new JButton("View All Books");
 		JButton button5 = new JButton("Exit Program");
 		
+		button1.addActionListener(new ButtonAddListener(frame));
+		button4.addActionListener(new ButtonViewListener(frame));
+		
 		panel1.add(label);
 		panel2.add(button1);
 		panel2.add(button2);
@@ -33,7 +42,7 @@ public class ManuSelection extends JFrame {
 		this.add(label, BorderLayout.NORTH);
 		this.add(panel2, BorderLayout.CENTER);
 		
-		this.setVisible(true);
+
 	}
 	
 }
