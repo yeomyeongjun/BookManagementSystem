@@ -15,6 +15,10 @@ public interface BookInput {
 	
 	public void setTitle(String title);
 	
+	public String getWriter();
+	
+	public void setWriter(String title);	
+
 	public String getManager();
 	
 	public void setManager(String manager);

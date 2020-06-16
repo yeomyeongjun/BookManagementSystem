@@ -22,7 +22,6 @@ public class EventLogger {
 			logger.addHandler(filehandler);
 		
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

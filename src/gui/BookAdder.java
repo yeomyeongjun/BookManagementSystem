@@ -45,11 +45,8 @@ public class BookAdder extends JPanel {
 		panel.add(new JButton("cancel"));	
 		
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);
-		
 
-		
 		this.add(panel);
 		this.setVisible(true);
 	}
-	
 }
